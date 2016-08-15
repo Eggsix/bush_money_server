@@ -4,10 +4,10 @@ const User =require('../models/user');
 const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (env === 'development') {
-	const config = require('../config');
+	const config = 'djiefjaiojgejngjaenfiejf';
 }
 
-const salt_key = process.env.PASSWORD_SALT || config.secret;
+const salt_key = process.env.PASSWORD_SALT || config;
 
 function tokenForUser(user) {
 	const timestamp = new Date().getTime();
