@@ -2,13 +2,14 @@ const jwt = require('jwt-simple');
 const User =require('../models/user');
 
 const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
+console.log(env);
 if (env === 'development') {
 	const config = require('../config');
 }
 
 const salt_key = process.env.PASSWORD_SALT || config.secret;
 
+console.log(process.env.PASSWORD_SALT);
 function tokenForUser(user) {
 	const timestamp = new Date().getTime();
 	return jwt.encode({ sub: user.id, iat: timestamp }, salt_key);
