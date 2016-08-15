@@ -1,11 +1,19 @@
 const jwt = require('jwt-simple');
 const User =require('../models/user');
-const config = process.env.PASSWORD_SALT || require('../config');
+
+
+if (process.env.NODE_ENV === 'development') {
+	const secret = require('../config');
+	const config = secret.secret;
+} else {
+	const config = process.env.PASSWORD_SALT;
+}
 
 function tokenForUser(user) {
 	const timestamp = new Date().getTime();
-	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+	return jwt.encode({ sub: user.id, iat: timestamp }, config);
 }
+
 exports.signin = function (req, res, next) {
 	// User has already had their email and password auth'd 
 	// we just to give them a token
