@@ -10,8 +10,17 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 
-//DB Setup
-mongoose.connect('mongodb://localhost:auth/auth');
+//move to separate file
+const user = process.env.MONGO_USR_P;
+const password = process.env.MONGO_PASS
+const mLabURI = 'mongodb://' + user + ':'+ password + '@ds163195-a0.mlab.com:63195,ds163195-a1.mlab.com:63195/<dbname>?replicaSet=rs-ds163195';
+
+if (env === 'development') {
+	mongoose.connect('mongodb://localhost:auth/auth');
+} else {
+	mongoose.connect(mLabURI);
+}
+
 
 // App Setup
 app.use(morgan('combined'));
