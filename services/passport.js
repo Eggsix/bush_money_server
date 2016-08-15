@@ -7,6 +7,8 @@ const LocalStrategy = require('passport-local');
 if (env === 'development') {
 	const config = require('../config');
 }
+
+const salt_key = process.env.PASSWORD_SALT || config.secret;
 // Create local strategy
 const localOptions = { usernameField: 'email'}
 const localLogin = new LocalStrategy ( localOptions, function(email, password, done ) {
@@ -29,7 +31,7 @@ const localLogin = new LocalStrategy ( localOptions, function(email, password, d
 // Setup options for JWT Strategy
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	secretOrKey: config.secret
+	secretOrKey: salt_key
 };
 
 
