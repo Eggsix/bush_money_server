@@ -13,8 +13,7 @@ const cors = require('cors');
 //move to separate file
 const user = process.env.MONGO_USR_P;
 const password = process.env.MONGO_PASS
-const mLabURI = 'mongodb://' + user + ':'+ password + '@ds163195-a0.mlab.com:63195,ds163195-a1.mlab.com:63195/bushmall?replicaSet=rs-ds163195';
-
+const mLabURI = 'mongodb://' + user + ':'+ password + '@ds163195-a0.mlab.com:63195,ds163195-a1.mlab.com:63195/heroku_45hljcnq?replicaSet=rs-ds163195'
 if (env === 'development') {
 	mongoose.connect('mongodb://localhost:auth/auth');
 } else {
