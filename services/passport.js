@@ -1,3 +1,4 @@
+const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const passport = require('passport');
 const User = require('../models/user');
 const JwtStrategy = require('passport-jwt').Strategy;
