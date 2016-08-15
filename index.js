@@ -1,4 +1,5 @@
 // Main starting point of the application
+const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -10,8 +11,8 @@ const cors = require('cors');
 
 
 //DB Setup
-const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 mongoose.connect('mongodb://localhost:auth/auth');
+
 // App Setup
 app.use(morgan('combined'));
 app.use(cors());
