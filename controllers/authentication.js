@@ -1,6 +1,9 @@
 const jwt = require('jwt-simple');
 const User =require('../models/user');
-const config = require('../config');
+
+if (env === 'development') {
+	const config = require('../config');
+}
 
 const salt_key = process.env.PASSWORD_SALT || config.secret;
 
