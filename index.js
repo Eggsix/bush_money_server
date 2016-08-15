@@ -7,7 +7,10 @@ const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+
 //DB Setup
+const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 mongoose.connect('mongodb://localhost:auth/auth');
 // App Setup
 app.use(morgan('combined'));

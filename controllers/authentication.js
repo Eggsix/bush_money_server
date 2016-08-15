@@ -1,17 +1,12 @@
 const jwt = require('jwt-simple');
 const User =require('../models/user');
+const config = require('../config');
 
-
-if (process.env.NODE_ENV === 'development') {
-	const secret = require('../config');
-	const config = secret.secret;
-} else {
-	const config = process.env.PASSWORD_SALT;
-}
+const salt_key = process.env.PASSWORD_SALT || config.secret;
 
 function tokenForUser(user) {
 	const timestamp = new Date().getTime();
-	return jwt.encode({ sub: user.id, iat: timestamp }, config);
+	return jwt.encode({ sub: user.id, iat: timestamp }, salt_key);
 }
 
 exports.signin = function (req, res, next) {
